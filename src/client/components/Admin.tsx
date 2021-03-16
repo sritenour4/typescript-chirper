@@ -1,16 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router'
+import { useHistory } from 'react-router';
+import { RouteComponentProps } from "react-router-dom";
 
-const Admin = () => {
+const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
 	const history = useHistory()
-	const { id }= useParams()
 	const [name, setName] = useState("");
 	const [message, setMessage] = useState("");
 
 	const deleteChirp = (async () => {
 		try {
-			await fetch(`/chirps/${id}`, {
+			await fetch(`/chirps/${props.match.params.id}`, {
 				method: 'DELETE',
 				headers: {
 					// 'Accept': 'application/json',
@@ -25,7 +25,7 @@ const Admin = () => {
 
 	const editChirp = (async () => {
 		try {
-			const res = await fetch(`/chirps/${id}`, {
+			const res = await fetch(`/chirps/${props.match.params.id}`, {
 				method: 'PUT',
 				headers: {
 					// 'Accept': 'application/json',
@@ -43,21 +43,23 @@ const Admin = () => {
 
 
 	return (
-		<div className="container p-4">
-			<div className="row">
-			<input type="text" name="username" id="name-input" placeholder="username" value={name} onChange={(e) => setName(e.target.value)} />
-			</div>
-			<div className="row">
-			<textarea name="message" id="message-input" cols={30} rows={10} value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-			</div>
-			<div className="row">
-			<input type="submit" value="Update" onClick={editChirp} />
-			<button onClick={deleteChirp}>Delete</button>
+		<div className="chirpInput card border-primary col-md-8 p-3 mt-3">
+			<div className="card-body ">
+				<form
+					className="form-group mb-0 p-3">
+					<input className="form control" type="text" name="name" id="name-input" placeholder="name" value={name} onChange={(e) => setName(e.target.value)} />
+					<textarea className="form-control" name="message" id="message-input" placeholder="message" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+					<div className="text-right pt-3">
+					<input className="btn btn-primary ml-3" type="submit" value="Edit" onClick={editChirp} />
+						<input className="btn btn-primary ml-3" type="submit" value="Delete" onClick={deleteChirp} />
+					</div>
+				</form>
 			</div>
 		</div>
+		
 	);
 };
 
-
+interface IAdminProps extends RouteComponentProps<{ id: string }> { }
 
 export default Admin;

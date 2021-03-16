@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
-import './scss/app';
 
+import Navbar from './components/Navbar';
 import Chirps from './components/Chirps';
 import Add from './components/AddChirp';
 import Admin from './components/Admin';
+import './scss/app';
 
 const App = (props: IAppProps) => {
 		
 	return (
 		<main className="container">
 			<BrowserRouter>
+			<Navbar />
 			<Switch>
 				<Route exact path="/" component={Chirps}></Route>
 				<Route exact path="/add" component={Add}></Route>

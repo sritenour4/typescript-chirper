@@ -12,7 +12,7 @@ const Chirps = (props: IChirpsProps) => {
             try {
                 const res = await fetch('/chirps/');
                 const data = await res.json();
-                data.pop()
+                // data.pop()
                 setChirps(data);
             } catch (error) {
                 console.log(error);
@@ -23,17 +23,15 @@ const Chirps = (props: IChirpsProps) => {
     return (
         <main className="container">
             {/* <div className="row"> */}
-                {chirps.map(chirp => (
-                    <div key={chirp.id} className="card m-3 bg-light">
-                        <div className="card-body">
-                            <h5 className="card-title">{chirp.name}</h5>
-                            <p className="card-text">{chirp.message}</p>
-                            <Link to={`/${chirp.id}/admin`}>
-                            <a href="#" className="card-link">Admin Options</a>
-                            </Link>
-                        </div>
+            {chirps.map(chirp => (
+                <div key={chirp.id} className="card m-3 bg-light">
+                    <div className="card-body">
+                        <h5 className="card-title">{chirp.name}</h5>
+                        <p className="card-text">{chirp.message}</p>
+                        <Link to={`/${chirp.id}/admin`} className="card-link"> Admin Options</Link>
                     </div>
-                ))}
+                </div>
+            ))}
             {/* </div> */}
         </main>
     );

@@ -17,6 +17,7 @@ router.get('/:id', (req, res) =>  {
 //     const chirps = chirpsStore.GetChirps();
 //     res.json(chirps);        
 // });
+
 router.get('/', (req, res) => {
     const data = chirpsStore.GetChirps()
     const chirps = Object.keys(data).map(key => {
