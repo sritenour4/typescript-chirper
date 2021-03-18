@@ -7,7 +7,7 @@ import Add from './components/AddChirp';
 import Admin from './components/Admin';
 import './scss/app';
 
-const App = (props: IAppProps) => {
+const App: React.FC<IAppProps> = (props: IAppProps) => {
 		
 	return (
 		<main className="container">

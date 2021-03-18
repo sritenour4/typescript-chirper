@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AddChirps from './AddChirp';
-// import AddChirps from "./AddChirp";
+
 
 const Chirps = (props: IChirpsProps) => {
     const [chirps, setChirps] = useState<IChirpsState[]>([]);
@@ -12,7 +12,6 @@ const Chirps = (props: IChirpsProps) => {
             try {
                 const res = await fetch('/chirps/');
                 const data = await res.json();
-                // data.pop()
                 setChirps(data);
             } catch (error) {
                 console.log(error);
@@ -22,7 +21,6 @@ const Chirps = (props: IChirpsProps) => {
 
     return (
         <main className="container">
-            {/* <div className="row"> */}
             {chirps.map(chirp => (
                 <div key={chirp.id} className="card m-3 bg-light">
                     <div className="card-body">
@@ -32,8 +30,7 @@ const Chirps = (props: IChirpsProps) => {
                     </div>
                 </div>
             ))}
-            {/* </div> */}
-        </main>
+            </main>
     );
 };
 

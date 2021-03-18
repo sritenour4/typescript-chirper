@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
-const AddChirps = () => {
+const AddChirps: React.FC<IAddChirpsProps> = (props: IAddChirpsProps) => {
 	const [name, setName] = useState("");
 	const [message, setMessage] = useState("");
 
@@ -16,7 +17,8 @@ const AddChirps = () => {
 				body: JSON.stringify({ name, message }),
 			});
 
-			const response = await res.json();
+			props.history.push('/');
+			// const response = await res.json();
 
 		} catch (error) {
 			console.log(error);
@@ -42,5 +44,7 @@ const AddChirps = () => {
 
 	);
 };
+
+interface IAddChirpsProps extends RouteComponentProps{}
 
 export default AddChirps;

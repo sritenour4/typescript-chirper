@@ -3,7 +3,9 @@ import chirpRouter from './routes/chirps'
 import * as path from 'path'
 
 const app = express();
+// parse JSON so I can use in chirps.js
 app.use(express.json())
+
 app.use(express.static('public'));
 app.use('/chirps', chirpRouter);
 
